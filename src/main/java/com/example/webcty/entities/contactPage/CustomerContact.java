@@ -3,10 +3,7 @@ package com.example.webcty.entities.contactPage;
 import com.example.webcty.enums.ContactStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -21,7 +18,8 @@ import java.time.LocalDateTime;
 @Setter
 public class CustomerContact {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_seq_name")
+    @SequenceGenerator(name = "your_seq_name", sequenceName = "YOUR_SEQ_IN_DB", allocationSize = 1)
     private Long id;
 
     @Column(nullable = false)
@@ -33,7 +31,7 @@ public class CustomerContact {
     @Column(nullable = false, length = 20)
     private String phone;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "CLOB", nullable = false)
     private String message;
 
     @Enumerated(EnumType.STRING)

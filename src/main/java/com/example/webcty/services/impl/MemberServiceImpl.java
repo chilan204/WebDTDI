@@ -8,6 +8,8 @@ import com.example.webcty.repositories.MemberRepository;
 import com.example.webcty.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,11 +19,14 @@ import java.util.stream.Collectors;
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final MemberMapper memberMapper;
+    private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
-    public MemberServiceImpl(MemberRepository memberRepository) {
+    public MemberServiceImpl(MemberRepository memberRepository, MemberMapper memberMapper, PasswordEncoder passwordEncoder) {
         this.memberRepository = memberRepository;
-        this.memberMapper = new MemberMapper();
+        this.memberMapper = memberMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -40,6 +45,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberResponse createMember(MemberRequest memberDTO) {
         Member member = memberMapper.toEntity(memberDTO);
+        member.setPassword(passwordEncoder.encode(memberDTO.getPassword()));
         Member savedMember = memberRepository.save(member);
         return memberMapper.toResponseDTO(savedMember);
     }

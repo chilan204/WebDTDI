@@ -2,10 +2,7 @@ package com.example.webcty.entities.homePage;
 
 import com.example.webcty.entities.bases.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -17,7 +14,8 @@ import java.util.List;
 @Setter
 public class HomeBanner extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_seq_name")
+    @SequenceGenerator(name = "your_seq_name", sequenceName = "YOUR_SEQ_IN_DB", allocationSize = 1)
     private Long id;
 
     @Column(nullable = false)
@@ -28,7 +26,7 @@ public class HomeBanner extends BaseEntity {
             name = "home_banner_images",
             joinColumns = @JoinColumn(name = "home_banner_id")
     )
-    @Column(name = "image_urls", nullable = false, columnDefinition = "LONGTEXT")
+    @Column(name = "image_urls", nullable = false, columnDefinition = "CLOB")
     @Lob
     private List<String> imageUrls;
 }

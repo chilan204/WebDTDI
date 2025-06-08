@@ -2,10 +2,7 @@ package com.example.webcty.entities.newsPage;
 
 import com.example.webcty.entities.bases.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "news")
@@ -15,19 +12,20 @@ import lombok.Setter;
 @Setter
 public class News extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_seq_name")
+    @SequenceGenerator(name = "your_seq_name", sequenceName = "YOUR_SEQ_IN_DB", allocationSize = 1)
     private Long id;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "CLOB", nullable = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "CLOB", nullable = false)
     private String description;
 
-    @Column(columnDefinition = "LONGTEXT", nullable = false)
+    @Column(columnDefinition = "CLOB", nullable = false)
     private String content;
 
-    @Column(nullable = false, columnDefinition = "LONGTEXT")
+    @Column(nullable = false, columnDefinition = "CLOB")
     private String image;
 
     @Column(name = "order_index", unique = true)

@@ -2,10 +2,7 @@ package com.example.webcty.entities.aboutUsPage;
 
 import com.example.webcty.entities.bases.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "company_manager_component")
@@ -15,19 +12,20 @@ import lombok.Setter;
 @Setter
 public class CompanyManagerComponent extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_seq_name")
+    @SequenceGenerator(name = "your_seq_name", sequenceName = "YOUR_SEQ_IN_DB", allocationSize = 1)
     private Long id;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "CLOB", nullable = false)
     private String name;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "CLOB", nullable = false)
     private String position;
 
-    @Column(columnDefinition = "MEDIUMTEXT", nullable = false)
+    @Column(columnDefinition = "CLOB", nullable = false)
     private String description;
 
-    @Column(columnDefinition = "LONGTEXT", nullable = false)
+    @Column(columnDefinition = "CLOB", nullable = false)
     private String image;
 
     @Column(name = "order_index", unique = true)

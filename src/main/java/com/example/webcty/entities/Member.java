@@ -9,14 +9,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "members")
+@Table(name = "member")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 public class Member extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_seq_name")
+    @SequenceGenerator(name = "your_seq_name", sequenceName = "YOUR_SEQ_IN_DB", allocationSize = 1)
     private Long id;
 
     @Column(nullable = false, unique = true, length = 100)
