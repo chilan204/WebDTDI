@@ -40,14 +40,9 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                 .requestMatchers(HttpMethod.POST,"/api/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/customer-contact").permitAll()
-
-                .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
-                .requestMatchers(HttpMethod.PUT, "/api/**").permitAll()
-                .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll()
-//                .requestMatchers(HttpMethod.POST, "/api/**").hasAnyRole("ADMIN", "EDITOR")
-//                .requestMatchers(HttpMethod.PUT, "/api/**").hasAnyRole("ADMIN", "EDITOR")
-//                .requestMatchers(HttpMethod.DELETE, "/api/**").hasAnyRole("ADMIN", "EDITOR")
-
+                .requestMatchers(HttpMethod.POST, "/api/**").hasAnyRole("ADMIN", "EDITOR")
+                .requestMatchers(HttpMethod.PUT, "/api/**").hasAnyRole("ADMIN", "EDITOR")
+                .requestMatchers(HttpMethod.DELETE, "/api/**").hasAnyRole("ADMIN", "EDITOR")
                 .requestMatchers(HttpMethod.POST,"/api/auth/register").hasRole("ADMIN")
                 .requestMatchers("/api/members/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
