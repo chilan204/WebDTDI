@@ -12,8 +12,9 @@ import lombok.*;
 @Setter
 public class ServiceBanner extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_seq_name")
-    @SequenceGenerator(name = "your_seq_name", sequenceName = "YOUR_SEQ_IN_DB", allocationSize = 1)    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dtdi")
+    @SequenceGenerator(name = "dtdi", sequenceName = "DTDI", allocationSize = 1)
+    private Long id;
 
     @Column(nullable = false)
     private String slogan;

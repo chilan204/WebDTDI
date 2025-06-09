@@ -16,8 +16,8 @@ import lombok.Setter;
 @Setter
 public class Member extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_seq_name")
-    @SequenceGenerator(name = "your_seq_name", sequenceName = "YOUR_SEQ_IN_DB", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dtdi")
+    @SequenceGenerator(name = "dtdi", sequenceName = "DTDI", allocationSize = 1)
     private Long id;
 
     @Column(nullable = false, unique = true, length = 100)
