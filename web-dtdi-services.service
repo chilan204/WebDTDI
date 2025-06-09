@@ -1,0 +1,16 @@
+[Unit]
+# Auto-generated, DO NOT EDIT
+Description=Service for snap application web-dtdi-services
+After=syslog.target
+After=network.target
+
+[Service]
+User=install
+Group=install
+ExecStart=/usr/lib/jvm/java-17-amazon-corretto/bin/java -jar /home/install/apps/dtdi/web-dtdi/web_dtdi_services/webDTDI-0.0.1-SNAPSHOT.jar
+Restart=on-failure
+RestartSec=10
+WorkingDirectory=/home/install/apps/dtdi/web-dtdi/web_dtdi_services/
+
+[Install]
+WantedBy=multi-user.target
