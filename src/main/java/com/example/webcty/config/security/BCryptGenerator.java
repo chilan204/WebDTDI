@@ -4,7 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class BCryptGenerator {
     public static void main(String[] args) {
-        String rawPassword = "123456"; // Mật khẩu gốc
+        String rawPassword = "0362588598"; // Mật khẩu gốc
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String hashedPassword = encoder.encode(rawPassword);
 
